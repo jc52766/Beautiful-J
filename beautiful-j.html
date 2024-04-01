@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-04-02 Tue 08:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Beautiful J</title>
+<meta name="author" content="Jason Corderoy" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/hideshow.css"/>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/bigblow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/hideshow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Beautiful J</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2f105ec">Basic examples</a>
+<ul>
+<li><a href="#org1621471">Multiplication tables</a></li>
+<li><a href="#org4ce5d66">sum rows, columns and all value of matrices</a></li>
+</ul>
+</li>
+<li><a href="#orga21ba46">Intermediate Examples</a>
+<ul>
+<li><a href="#org69e4c3b">A novel approach to demand optimisation</a></li>
+</ul>
+</li>
+<li><a href="#org7d9034f">Advanced Examples</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2f105ec" class="outline-2">
+<h2 id="org2f105ec">Basic examples</h2>
+<div class="outline-text-2" id="text-org2f105ec">
+</div>
+<div id="outline-container-org1621471" class="outline-3">
+<h3 id="org1621471">Multiplication tables</h3>
+<div class="outline-text-3" id="text-org1621471">
+<div class="org-src-container">
+<pre class="src src-J">*/table 1+i.12
+</pre>
+</div>
+
+<pre class="example" id="orga1f910d">
+┌──┬───────────────────────────────────────┐
+│*/│ 1  2  3  4  5  6  7  8   9  10  11  12│
+├──┼───────────────────────────────────────┤
+│ 1│ 1  2  3  4  5  6  7  8   9  10  11  12│
+│ 2│ 2  4  6  8 10 12 14 16  18  20  22  24│
+│ 3│ 3  6  9 12 15 18 21 24  27  30  33  36│
+│ 4│ 4  8 12 16 20 24 28 32  36  40  44  48│
+│ 5│ 5 10 15 20 25 30 35 40  45  50  55  60│
+│ 6│ 6 12 18 24 30 36 42 48  54  60  66  72│
+│ 7│ 7 14 21 28 35 42 49 56  63  70  77  84│
+│ 8│ 8 16 24 32 40 48 56 64  72  80  88  96│
+│ 9│ 9 18 27 36 45 54 63 72  81  90  99 108│
+│10│10 20 30 40 50 60 70 80  90 100 110 120│
+│11│11 22 33 44 55 66 77 88  99 110 121 132│
+│12│12 24 36 48 60 72 84 96 108 120 132 144│
+└──┴───────────────────────────────────────┘
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4ce5d66" class="outline-3">
+<h3 id="org4ce5d66">sum rows, columns and all value of matrices</h3>
+<div class="outline-text-3" id="text-org4ce5d66">
+<p>
+E.g. given a 3*3 matrix sum each row, sum each column &amp; also sum all numbers.
+</p>
+
+<p>
+This may sound trivial but most languages require a non-trivial modification to code to achieve each one.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-J">]x=: 3 3 $ i.4
+</pre>
+</div>
+
+<pre class="example">
+0 1 2
+3 0 1
+2 3 0
+</pre>
+
+
+
+<div class="org-src-container">
+<pre class="src src-J">rs=:+/"1
+cs=:+/"2
+ts=:+/@:,
+summaryTable=: 3 : '(''row sum:'';''column sum:'';''total sum:''),.(rs;cs;ts) y'
+summaryTable x
+</pre>
+</div>
+
+<pre class="example">
+┌───────────┬─────┐
+│row sum:   │3 4 5│
+├───────────┼─────┤
+│column sum:│5 4 3│
+├───────────┼─────┤
+│total sum: │12   │
+└───────────┴─────┘
+</pre>
+
+
+<p>
+But what if we have a 3 x 3 x 3 matrix?
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-J">]x2=: 3 3 3 $ i.4
+summaryTable x2
+</pre>
+</div>
+
+<pre class="example" id="orgb0ec9cc">
+0 1 2
+3 0 1
+2 3 0
+
+1 2 3
+0 1 2
+3 0 1
+
+2 3 0
+1 2 3
+0 1 2
+
+┌───────────┬─────┐
+│row sum:   │3 4 5│
+│           │6 3 4│
+│           │5 6 3│
+├───────────┼─────┤
+│column sum:│5 4 3│
+│           │4 3 6│
+│           │3 6 5│
+├───────────┼─────┤
+│total sum: │39   │
+└───────────┴─────┘
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga21ba46" class="outline-2">
+<h2 id="orga21ba46">Intermediate Examples</h2>
+<div class="outline-text-2" id="text-orga21ba46">
+</div>
+<div id="outline-container-org69e4c3b" class="outline-3">
+<h3 id="org69e4c3b">A novel approach to demand optimisation</h3>
+<div class="outline-text-3" id="text-org69e4c3b">
+<p>
+Imagine you are chopping up cattle to fulfill demand. You are limited to your choices.
+E.g. you can't get 10 ribs, and if you mince the whole thing you can not then yield an eye fillet.
+</p>
+
+<p>
+Approach:
+</p>
+<ul class="org-ul">
+<li>So given a demand profile (xd: each column is a unique product)</li>
+<li>Possible options re how to yield products form cattle carcas (xo)</li>
+<li>An initial random guess (xg) from xo</li>
+<li>Then optimizing xg to ideally match xd (bo)</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-J">xn=:5
+xd=:(xn*80) , (xn*20) NB. demand
+xo=: (2 2)$(80 20) , (100 0) NB. options
+xg=:(xn, 2)$ ;&gt;xn#&lt;xo NB. sample each option evenly
+xgt=:+/"2 xg
+findbo=:3 : '{. vtemp #~ (&lt;./ = ]) +/"1] | xd (-)"1 1] +/"2] ]vtemp=:}."2] y,/"_ 1]xo' NB. try each option take the best one
+bo=:findbo^:(xn) xg
+bot=:+/"2 bo
+('demand (xd):';'Options (xo):';'Guess (xg):';'Guess Totals (xgt):';'Best Option (bo):';'Best Option Totals (bot):'),.(xd;xo;xg;xgt;bo;bot)
+</pre>
+</div>
+
+<pre class="example" id="orga2d6a75">
+┌─────────────────────────┬───────┐
+│demand (xd):             │400 100│
+├─────────────────────────┼───────┤
+│Options (xo):            │ 80 20 │
+│                         │100  0 │
+├─────────────────────────┼───────┤
+│Guess (xg):              │ 80 20 │
+│                         │100  0 │
+│                         │ 80 20 │
+│                         │100  0 │
+│                         │ 80 20 │
+├─────────────────────────┼───────┤
+│Guess Totals (xgt):      │440 60 │
+├─────────────────────────┼───────┤
+│Best Option (bo):        │80 20  │
+│                         │80 20  │
+│                         │80 20  │
+│                         │80 20  │
+│                         │80 20  │
+├─────────────────────────┼───────┤
+│Best Option Totals (bot):│400 100│
+└─────────────────────────┴───────┘
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7d9034f" class="outline-2">
+<h2 id="org7d9034f">Advanced Examples</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Jason Corderoy</p>
+<p class="date">Created: 2024-04-02 Tue 08:36</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
