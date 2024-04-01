@@ -1,0 +1,146 @@
+#+TITLE: Beautiful J
+#+AUTHOR: Jason Corderoy
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-bigblow.setup
+#+OPTIONS: num:nil
+
+** Basic examples
+*** Multiplication tables
+
+#+begin_src J :session smt :exports both
+  */table 1+i.12
+#+end_src
+
+#+RESULTS:
+#+begin_example
+┌──┬───────────────────────────────────────┐
+│*/│ 1  2  3  4  5  6  7  8   9  10  11  12│
+├──┼───────────────────────────────────────┤
+│ 1│ 1  2  3  4  5  6  7  8   9  10  11  12│
+│ 2│ 2  4  6  8 10 12 14 16  18  20  22  24│
+│ 3│ 3  6  9 12 15 18 21 24  27  30  33  36│
+│ 4│ 4  8 12 16 20 24 28 32  36  40  44  48│
+│ 5│ 5 10 15 20 25 30 35 40  45  50  55  60│
+│ 6│ 6 12 18 24 30 36 42 48  54  60  66  72│
+│ 7│ 7 14 21 28 35 42 49 56  63  70  77  84│
+│ 8│ 8 16 24 32 40 48 56 64  72  80  88  96│
+│ 9│ 9 18 27 36 45 54 63 72  81  90  99 108│
+│10│10 20 30 40 50 60 70 80  90 100 110 120│
+│11│11 22 33 44 55 66 77 88  99 110 121 132│
+│12│12 24 36 48 60 72 84 96 108 120 132 144│
+└──┴───────────────────────────────────────┘
+#+end_example
+
+*** sum rows, columns and all value of matrices
+E.g. given a 3*3 matrix sum each row, sum each column & also sum all numbers.
+
+This may sound trivial but most languages require a non-trivial modification to code to achieve each one.
+
+#+begin_src J :session s0 :exports both
+  ]x=: 3 3 $ i.4
+#+end_src
+
+#+RESULTS:
+: 0 1 2
+: 3 0 1
+: 2 3 0
+
+
+#+begin_src J :session s0 :exports both
+  rs=:+/"1
+  cs=:+/"2
+  ts=:+/@:,
+  summaryTable=: 3 : '(''row sum:'';''column sum:'';''total sum:''),.(rs;cs;ts) y'
+  summaryTable x
+#+end_src
+
+#+RESULTS:
+: ┌───────────┬─────┐
+: │row sum:   │3 4 5│
+: ├───────────┼─────┤
+: │column sum:│5 4 3│
+: ├───────────┼─────┤
+: │total sum: │12   │
+: └───────────┴─────┘
+
+But what if we have a 3 x 3 x 3 matrix?
+
+
+#+begin_src J :session s0 :exports both
+  ]x2=: 3 3 3 $ i.4
+  summaryTable x2
+#+end_src
+
+#+RESULTS:
+#+begin_example
+0 1 2
+3 0 1
+2 3 0
+
+1 2 3
+0 1 2
+3 0 1
+
+2 3 0
+1 2 3
+0 1 2
+
+┌───────────┬─────┐
+│row sum:   │3 4 5│
+│           │6 3 4│
+│           │5 6 3│
+├───────────┼─────┤
+│column sum:│5 4 3│
+│           │4 3 6│
+│           │3 6 5│
+├───────────┼─────┤
+│total sum: │39   │
+└───────────┴─────┘
+#+end_example
+
+
+** Intermediate Examples
+
+*** A novel approach to demand optimisation
+Imagine you are chopping up cattle to fulfill demand. You are limited to your choices.
+E.g. you can't get 10 ribs, and if you mince the whole thing you can not then yield an eye fillet.
+
+Approach:
+- So given a demand profile (xd: each column is a unique product)
+- Possible options re how to yield products form cattle carcas (xo)
+- An initial random guess (xg) from xo
+- Then optimizing xg to ideally match xd (bo)
+
+
+#+begin_src J :session s0 :exports both
+  xn=:5
+  xd=:(xn*80) , (xn*20) NB. demand
+  xo=: (2 2)$(80 20) , (100 0) NB. options
+  xg=:(xn, 2)$ ;>xn#<xo NB. sample each option evenly
+  findbo=:3 : '{. vtemp #~ (<./ = ]) +/"1] | xd (-)"1 1] +/"2] ]vtemp=:}."2] y,/"_ 1]xo' NB. try each option take the best one
+  bo=:findbo^:(xn) xg
+  ('demand (xd):';'Options (xo):';'Guess (xg):';'Best Option (bo):'),.(xd;xo;xg;bo)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+┌─────────────────┬───────┐
+│demand (xd):     │400 100│
+├─────────────────┼───────┤
+│Options (xo):    │ 80 20 │
+│                 │100  0 │
+├─────────────────┼───────┤
+│Guess (xg):      │ 80 20 │
+│                 │100  0 │
+│                 │ 80 20 │
+│                 │100  0 │
+│                 │ 80 20 │
+├─────────────────┼───────┤
+│Best Option (bo):│80 20  │
+│                 │80 20  │
+│                 │80 20  │
+│                 │80 20  │
+│                 │80 20  │
+└─────────────────┴───────┘
+#+end_example
+
+** Advanced Examples
