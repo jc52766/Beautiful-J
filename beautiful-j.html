@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-04-02 Tue 08:36 -->
+<!-- 2024-04-12 Fri 13:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beautiful J</title>
@@ -28,35 +28,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2f105ec">Basic examples</a>
+<li><a href="#org6294ff2">Basic examples</a>
 <ul>
-<li><a href="#org1621471">Multiplication tables</a></li>
-<li><a href="#org4ce5d66">sum rows, columns and all value of matrices</a></li>
+<li><a href="#orgf141519">Multiplication tables</a></li>
+<li><a href="#org3be0867">sum rows, columns and all value of matrices</a></li>
 </ul>
 </li>
-<li><a href="#orga21ba46">Intermediate Examples</a>
+<li><a href="#org4cddfe8">Intermediate Examples</a>
 <ul>
-<li><a href="#org69e4c3b">A novel approach to demand optimisation</a></li>
+<li><a href="#org04a0579">A novel approach to demand optimisation</a></li>
+<li><a href="#org64b284d">Backgammon hit rate</a></li>
+<li><a href="#org9cd8213">Spot betting sim</a></li>
 </ul>
 </li>
-<li><a href="#org7d9034f">Advanced Examples</a></li>
+<li><a href="#orga821118">Advanced Examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2f105ec" class="outline-2">
-<h2 id="org2f105ec">Basic examples</h2>
-<div class="outline-text-2" id="text-org2f105ec">
+<div id="outline-container-org6294ff2" class="outline-2">
+<h2 id="org6294ff2">Basic examples</h2>
+<div class="outline-text-2" id="text-org6294ff2">
 </div>
-<div id="outline-container-org1621471" class="outline-3">
-<h3 id="org1621471">Multiplication tables</h3>
-<div class="outline-text-3" id="text-org1621471">
+<div id="outline-container-orgf141519" class="outline-3">
+<h3 id="orgf141519">Multiplication tables</h3>
+<div class="outline-text-3" id="text-orgf141519">
 <div class="org-src-container">
 <pre class="src src-J">*/table 1+i.12
 </pre>
 </div>
 
-<pre class="example" id="orga1f910d">
+<pre class="example" id="orgbe08ab1">
 ┌──┬───────────────────────────────────────┐
 │*/│ 1  2  3  4  5  6  7  8   9  10  11  12│
 ├──┼───────────────────────────────────────┤
@@ -77,9 +79,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4ce5d66" class="outline-3">
-<h3 id="org4ce5d66">sum rows, columns and all value of matrices</h3>
-<div class="outline-text-3" id="text-org4ce5d66">
+<div id="outline-container-org3be0867" class="outline-3">
+<h3 id="org3be0867">sum rows, columns and all value of matrices</h3>
+<div class="outline-text-3" id="text-org3be0867">
 <p>
 E.g. given a 3*3 matrix sum each row, sum each column &amp; also sum all numbers.
 </p>
@@ -111,13 +113,7 @@ summaryTable x
 </div>
 
 <pre class="example">
-┌───────────┬─────┐
-│row sum:   │3 4 5│
-├───────────┼─────┤
-│column sum:│5 4 3│
-├───────────┼─────┤
-│total sum: │12   │
-└───────────┴─────┘
+summaryTable x
 </pre>
 
 
@@ -132,7 +128,7 @@ summaryTable x2
 </pre>
 </div>
 
-<pre class="example" id="orgb0ec9cc">
+<pre class="example" id="orgf014b0c">
 0 1 2
 3 0 1
 2 3 0
@@ -144,31 +140,19 @@ summaryTable x2
 2 3 0
 1 2 3
 0 1 2
-
-┌───────────┬─────┐
-│row sum:   │3 4 5│
-│           │6 3 4│
-│           │5 6 3│
-├───────────┼─────┤
-│column sum:│5 4 3│
-│           │4 3 6│
-│           │3 6 5│
-├───────────┼─────┤
-│total sum: │39   │
-└───────────┴─────┘
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orga21ba46" class="outline-2">
-<h2 id="orga21ba46">Intermediate Examples</h2>
-<div class="outline-text-2" id="text-orga21ba46">
+<div id="outline-container-org4cddfe8" class="outline-2">
+<h2 id="org4cddfe8">Intermediate Examples</h2>
+<div class="outline-text-2" id="text-org4cddfe8">
 </div>
-<div id="outline-container-org69e4c3b" class="outline-3">
-<h3 id="org69e4c3b">A novel approach to demand optimisation</h3>
-<div class="outline-text-3" id="text-org69e4c3b">
+<div id="outline-container-org04a0579" class="outline-3">
+<h3 id="org04a0579">A novel approach to demand optimisation</h3>
+<div class="outline-text-3" id="text-org04a0579">
 <p>
 Imagine you are chopping up cattle to fulfill demand. You are limited to your choices.
 E.g. you can't get 10 ribs, and if you mince the whole thing you can not then yield an eye fillet.
@@ -190,49 +174,153 @@ Approach:
 xd=:(xn*80) , (xn*20) NB. demand
 xo=: (2 2)$(80 20) , (100 0) NB. options
 xg=:(xn, 2)$ ;&gt;xn#&lt;xo NB. sample each option evenly
-xgt=:+/"2 xg
 findbo=:3 : '{. vtemp #~ (&lt;./ = ]) +/"1] | xd (-)"1 1] +/"2] ]vtemp=:}."2] y,/"_ 1]xo' NB. try each option take the best one
 bo=:findbo^:(xn) xg
-bot=:+/"2 bo
-('demand (xd):';'Options (xo):';'Guess (xg):';'Guess Totals (xgt):';'Best Option (bo):';'Best Option Totals (bot):'),.(xd;xo;xg;xgt;bo;bot)
+('demand (xd):';'Options (xo):';'Guess (xg):';'Best Option (bo):'),.(xd;xo;xg;bo)
 </pre>
 </div>
 
-<pre class="example" id="orga2d6a75">
-┌─────────────────────────┬───────┐
-│demand (xd):             │400 100│
-├─────────────────────────┼───────┤
-│Options (xo):            │ 80 20 │
-│                         │100  0 │
-├─────────────────────────┼───────┤
-│Guess (xg):              │ 80 20 │
-│                         │100  0 │
-│                         │ 80 20 │
-│                         │100  0 │
-│                         │ 80 20 │
-├─────────────────────────┼───────┤
-│Guess Totals (xgt):      │440 60 │
-├─────────────────────────┼───────┤
-│Best Option (bo):        │80 20  │
-│                         │80 20  │
-│                         │80 20  │
-│                         │80 20  │
-│                         │80 20  │
-├─────────────────────────┼───────┤
-│Best Option Totals (bot):│400 100│
-└─────────────────────────┴───────┘
+<pre class="example" id="orga5ca8bb">
+┌─────────────────┬───────┐
+│demand (xd):     │400 100│
+├─────────────────┼───────┤
+│Options (xo):    │ 80 20 │
+│                 │100  0 │
+├─────────────────┼───────┤
+│Guess (xg):      │ 80 20 │
+│                 │100  0 │
+│                 │ 80 20 │
+│                 │100  0 │
+│                 │ 80 20 │
+├─────────────────┼───────┤
+│Best Option (bo):│80 20  │
+│                 │80 20  │
+│                 │80 20  │
+│                 │80 20  │
+│                 │80 20  │
+└─────────────────┴───────┘
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org64b284d" class="outline-3">
+<h3 id="org64b284d">Backgammon hit rate</h3>
+<div class="outline-text-3" id="text-org64b284d">
+<p>
+For each distanct from opponent 1-12 approximate chances of getting hit.
+E.g. Chance of getting hit given a distance of 1 is just 1-p(not getting hit) 1-5/6<sup>2</sup>.
+We could solve this mathematically for each but simulation is so fun :) 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-J">NB. backgammon how many squares away is the least and most likely to get hit?
+rl=: 3 : '(] , +/) 1+ (?, ?)6' NB. random roll
+n=:1e5 NB. how many rolls to sample
+sr=:rl"0] i.n NB. sampled rolls
+samples=:{{(+/ % #) y e."1] sr}}"0] 1+i.12
+bars=:'-' #~ ,. &lt;. 100*samples
+]summary=:('DISTANCE';'HIT %';'AVERAGE TURNS PER HIT';'DOT PLOT'),:(,.1+i.12);(,.samples);(,.10%~&gt;.10* 1%samples);bars
+</pre>
+</div>
+
+<pre class="example" id="org1bdeadb">
+┌────────┬───────┬─────────────────────┬────────────────────────────────────────────┐
+│DISTANCE│HIT %  │AVERAGE TURNS PER HIT│DOT PLOT                                    │
+├────────┼───────┼─────────────────────┼────────────────────────────────────────────┤
+│ 1      │ 0.3071│ 3.3                 │------------------------------              │
+│ 2      │0.33337│   3                 │---------------------------------           │
+│ 3      │0.36183│ 2.8                 │------------------------------------        │
+│ 4      │0.38919│ 2.6                 │--------------------------------------      │
+│ 5      │0.41308│ 2.5                 │-----------------------------------------   │
+│ 6      │0.44632│ 2.3                 │--------------------------------------------│
+│ 7      │0.16816│   6                 │----------------                            │
+│ 8      │0.13913│ 7.2                 │-------------                               │
+│ 9      │0.10861│ 9.3                 │----------                                  │
+│10      │0.08464│11.9                 │--------                                    │
+│11      │0.05402│18.6                 │-----                                       │
+│12      │0.02795│35.8                 │--                                          │
+└────────┴───────┴─────────────────────┴────────────────────────────────────────────┘
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9cd8213" class="outline-3">
+<h3 id="org9cd8213">Spot betting sim</h3>
+<div class="outline-text-3" id="text-org9cd8213">
+<p>
+Set odds, real odds, and profit target. Keep increasing bets accordingly until profit target is reached.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-J">odds=:10
+realOdds=:odds*1.1
+profitTarget=:10
+init_variables=: 3 : 0
+'nthBet cumInvest cumReturn cumProfit'=:0 NB. initialize variables
+tableHeadings=:'nthBet';'invest';'cumInvest';'return';'cumReturn';'profit';'cumProfit'
+summaryTable=:tableHeadings
+)
+fWin =: 3 : '(1%y)&lt;:~?0' NB. 1 if bet wins else 0. y is realOdds
+fInvest =: 3 : 0
+nthBet=:nthBet+1
+invest=:(profitTarget-cumProfit)%odds-1 NB. get new investment amount for this bet
+betWin=. fWin realOdds NB. did the bet win or not?
+return=:betWin*invest*odds
+profit=:return-invest
+cumInvest=:cumInvest+invest
+cumReturn=:cumReturn+return
+cumProfit=:cumProfit+profit
+tRows=.nthBet+1
+summaryTable=:(tRows, 7) $ (,summaryTable),(nthBet;invest;cumInvest;return;cumReturn;profit;cumProfit)
+)
+
+sim=: 3 : 0
+init_variables 1
+while. cumProfit &lt;: 0 do.
+fInvest 1
+end.
+overviewTable=:(2,4) $('nBets';'cumInvest';'cumReturn';'cumProfit'),(nthBet;cumInvest;cumReturn;cumProfit)
+cumInvest
+)
+
+sim 1
+overviewTable
+summaryTable
+</pre>
+</div>
+
+<pre class="example" id="org61ea54e">
+5.24158
+
+┌─────┬─────────┬─────────┬─────────┐
+│nBets│cumInvest│cumReturn│cumProfit│
+├─────┼─────────┼─────────┼─────────┤
+│4    │5.24158  │15.2416  │10       │
+└─────┴─────────┴─────────┴─────────┘
+
+┌──────┬───────┬─────────┬───────┬─────────┬────────┬─────────┐
+│nthBet│invest │cumInvest│return │cumReturn│profit  │cumProfit│
+├──────┼───────┼─────────┼───────┼─────────┼────────┼─────────┤
+│1     │1.11111│1.11111  │0      │0        │_1.11111│_1.11111 │
+├──────┼───────┼─────────┼───────┼─────────┼────────┼─────────┤
+│2     │1.23457│2.34568  │0      │0        │_1.23457│_2.34568 │
+├──────┼───────┼─────────┼───────┼─────────┼────────┼─────────┤
+│3     │1.37174│3.71742  │0      │0        │_1.37174│_3.71742 │
+├──────┼───────┼─────────┼───────┼─────────┼────────┼─────────┤
+│4     │1.52416│5.24158  │15.2416│15.2416  │13.7174 │10       │
+└──────┴───────┴─────────┴───────┴─────────┴────────┴─────────┘
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7d9034f" class="outline-2">
-<h2 id="org7d9034f">Advanced Examples</h2>
+<div id="outline-container-orga821118" class="outline-2">
+<h2 id="orga821118">Advanced Examples</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Jason Corderoy</p>
-<p class="date">Created: 2024-04-02 Tue 08:36</p>
+<p class="date">Created: 2024-04-12 Fri 13:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
