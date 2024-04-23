@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-04-12 Fri 16:24 -->
+<!-- 2024-04-23 Tue 22:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beautiful J</title>
@@ -28,38 +28,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5fed17a">Basic examples</a>
+<li><a href="#org73e273c">J Examples</a>
 <ul>
-<li><a href="#orgbca0884">Multiplication tables</a></li>
-<li><a href="#orgb70b269">sum rows, columns and all value of matrices</a></li>
+<li><a href="#org0e32eb3">Multiplication tables</a></li>
+<li><a href="#orgad3c1e3">sum rows, columns and all value of matrices</a></li>
+<li><a href="#orgb0b768f">A novel approach to demand optimisation</a></li>
+<li><a href="#orge019c50">Backgammon hit rate</a></li>
+<li><a href="#org55c9715">Sport betting sim</a></li>
+<li><a href="#org3b7c37b">Darts checkouts</a></li>
 </ul>
 </li>
-<li><a href="#orgfd5dd24">Intermediate Examples</a>
-<ul>
-<li><a href="#org30c1408">A novel approach to demand optimisation</a></li>
-<li><a href="#org7aa7969">Backgammon hit rate</a></li>
-<li><a href="#org014ea9f">Spot betting sim</a></li>
-<li><a href="#org1b289a8">Darts checkouts</a></li>
-</ul>
-</li>
-<li><a href="#org936d969">Advanced Examples</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5fed17a" class="outline-2">
-<h2 id="org5fed17a">Basic examples</h2>
-<div class="outline-text-2" id="text-org5fed17a">
+<div id="outline-container-org73e273c" class="outline-2">
+<h2 id="org73e273c">J Examples</h2>
+<div class="outline-text-2" id="text-org73e273c">
 </div>
-<div id="outline-container-orgbca0884" class="outline-3">
-<h3 id="orgbca0884">Multiplication tables</h3>
-<div class="outline-text-3" id="text-orgbca0884">
+<div id="outline-container-org0e32eb3" class="outline-3">
+<h3 id="org0e32eb3">Multiplication tables</h3>
+<div class="outline-text-3" id="text-org0e32eb3">
 <div class="org-src-container">
 <pre class="src src-J">*/table 1+i.12
 </pre>
 </div>
 
-<pre class="example" id="org89c9a45">
+<pre class="example" id="org6cefe86">
 ┌──┬───────────────────────────────────────┐
 │*/│ 1  2  3  4  5  6  7  8   9  10  11  12│
 ├──┼───────────────────────────────────────┤
@@ -80,9 +75,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb70b269" class="outline-3">
-<h3 id="orgb70b269">sum rows, columns and all value of matrices</h3>
-<div class="outline-text-3" id="text-orgb70b269">
+<div id="outline-container-orgad3c1e3" class="outline-3">
+<h3 id="orgad3c1e3">sum rows, columns and all value of matrices</h3>
+<div class="outline-text-3" id="text-orgad3c1e3">
 <p>
 E.g. given a 3*3 matrix sum each row, sum each column &amp; also sum all numbers.
 </p>
@@ -129,7 +124,7 @@ summaryTable x2
 </pre>
 </div>
 
-<pre class="example" id="orgf2e0ffc">
+<pre class="example" id="org15bd7a3">
 0 1 2
 3 0 1
 2 3 0
@@ -144,16 +139,11 @@ summaryTable x2
 </pre>
 </div>
 </div>
-</div>
 
 
-<div id="outline-container-orgfd5dd24" class="outline-2">
-<h2 id="orgfd5dd24">Intermediate Examples</h2>
-<div class="outline-text-2" id="text-orgfd5dd24">
-</div>
-<div id="outline-container-org30c1408" class="outline-3">
-<h3 id="org30c1408">A novel approach to demand optimisation</h3>
-<div class="outline-text-3" id="text-org30c1408">
+<div id="outline-container-orgb0b768f" class="outline-3">
+<h3 id="orgb0b768f">A novel approach to demand optimisation</h3>
+<div class="outline-text-3" id="text-orgb0b768f">
 <p>
 Imagine you are chopping up cattle to fulfill demand. You are limited to your choices.
 E.g. you can't get 10 ribs, and if you mince the whole thing you can not then yield an eye fillet.
@@ -181,7 +171,7 @@ bo=:findbo^:(xn) xg
 </pre>
 </div>
 
-<pre class="example" id="org8f110df">
+<pre class="example" id="org6ae1412">
 ┌─────────────────┬───────┐
 │demand (xd):     │400 100│
 ├─────────────────┼───────┤
@@ -204,9 +194,9 @@ bo=:findbo^:(xn) xg
 </div>
 </div>
 
-<div id="outline-container-org7aa7969" class="outline-3">
-<h3 id="org7aa7969">Backgammon hit rate</h3>
-<div class="outline-text-3" id="text-org7aa7969">
+<div id="outline-container-orge019c50" class="outline-3">
+<h3 id="orge019c50">Backgammon hit rate</h3>
+<div class="outline-text-3" id="text-orge019c50">
 <p>
 For each distanct from opponent 1-12 approximate chances of getting hit.
 E.g. Chance of getting hit given a distance of 1 is just 1-p(not getting hit) 1-5/6<sup>2</sup>.
@@ -224,7 +214,7 @@ bars=:'-' #~ ,. &lt;. 100*samples
 </pre>
 </div>
 
-<pre class="example" id="org227d83d">
+<pre class="example" id="org1707eec">
 ┌────────┬───────┬─────────────────────┬────────────────────────────────────────────┐
 │DISTANCE│HIT %  │AVERAGE TURNS PER HIT│DOT PLOT                                    │
 ├────────┼───────┼─────────────────────┼────────────────────────────────────────────┤
@@ -245,9 +235,9 @@ bars=:'-' #~ ,. &lt;. 100*samples
 </div>
 </div>
 
-<div id="outline-container-org014ea9f" class="outline-3">
-<h3 id="org014ea9f">Spot betting sim</h3>
-<div class="outline-text-3" id="text-org014ea9f">
+<div id="outline-container-org55c9715" class="outline-3">
+<h3 id="org55c9715">Sport betting sim</h3>
+<div class="outline-text-3" id="text-org55c9715">
 <p>
 Set odds, real odds, and profit target. Keep increasing bets accordingly until profit target is reached.
 </p>
@@ -290,7 +280,7 @@ summaryTable
 </pre>
 </div>
 
-<pre class="example" id="orged9feea">
+<pre class="example" id="org96fe23e">
 5.24158
 
 ┌─────┬─────────┬─────────┬─────────┐
@@ -314,9 +304,9 @@ summaryTable
 </div>
 </div>
 
-<div id="outline-container-org1b289a8" class="outline-3">
-<h3 id="org1b289a8">Darts checkouts</h3>
-<div class="outline-text-3" id="text-org1b289a8">
+<div id="outline-container-org3b7c37b" class="outline-3">
+<h3 id="org3b7c37b">Darts checkouts</h3>
+<div class="outline-text-3" id="text-org3b7c37b">
 <p>
 Show all quickest possible checkouts. E.g. 40 show d20 do not show 10 6 d12.
 </p>
@@ -345,7 +335,7 @@ NB. ,.(&lt;@:prune@:ap)"0] 7 8 11 16
 </pre>
 </div>
 
-<pre class="example" id="orgefd062c">
+<pre class="example" id="org7739b19">
 ┌──┬────────────────────────────────┐
 │7 │┌─────┬─────┬─────┐             │
 │  ││0 1 6│0 3 4│0 5 2│             │
@@ -375,16 +365,10 @@ NB. ,.(&lt;@:prune@:ap)"0] 7 8 11 16
 </div>
 </div>
 </div>
-
-
-
-<div id="outline-container-org936d969" class="outline-2">
-<h2 id="org936d969">Advanced Examples</h2>
-</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Jason Corderoy</p>
-<p class="date">Created: 2024-04-12 Fri 16:24</p>
+<p class="date">Created: 2024-04-23 Tue 22:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

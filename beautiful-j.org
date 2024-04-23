@@ -3,7 +3,7 @@
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-bigblow.setup
 #+OPTIONS: num:nil
 
-** Basic examples
+** J Examples
 *** Multiplication tables
 
 #+begin_src J :exports both
@@ -98,8 +98,6 @@ But what if we have a 3 x 3 x 3 matrix?
 #+end_example
 
 
-** Intermediate Examples
-
 *** A novel approach to demand optimisation
 Imagine you are chopping up cattle to fulfill demand. You are limited to your choices.
 E.g. you can't get 10 ribs, and if you mince the whole thing you can not then yield an eye fillet.
@@ -181,7 +179,7 @@ We could solve this mathematically for each but simulation is so fun :)
 └────────┴───────┴─────────────────────┴────────────────────────────────────────────┘
 #+end_example
 
-*** Spot betting sim
+*** Sport betting sim
 Set odds, real odds, and profit target. Keep increasing bets accordingly until profit target is reached.
 
 #+begin_src J :exports both
@@ -301,4 +299,3 @@ Show all quickest possible checkouts. E.g. 40 show d20 do not show 10 6 d12.
 
 
 
-** Advanced Examples
